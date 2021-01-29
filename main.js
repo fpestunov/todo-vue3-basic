@@ -3,9 +3,9 @@ const app = Vue.createApp({
     return {
       newTodo: "",
       todos: [
-        'Go to store',
-        'Make homework',
-        'Call John',
+        {title: 'Go to store', done: false },
+        {title: 'Make homework', done: true },
+        {title: 'Call John', done: false },
       ],
     }
   },
@@ -15,10 +15,12 @@ const app = Vue.createApp({
       if (!value) {
         return;
       }
-      
-      this.todos.push(this.newTodo)
-      this.newTodo = ""
+
+      this.todos.push({
+        title: this.newTodo,
+        done: false
+      });
+      this.newTodo = "";
     },
   }
-
 })
