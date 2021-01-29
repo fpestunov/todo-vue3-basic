@@ -22,5 +22,8 @@ const app = Vue.createApp({
       });
       this.newTodo = "";
     },
+    deleteTodo: function(todo) {
+      this.todos.splice(this.todos.indexOf(todo), 1);
+    },
   }
 })

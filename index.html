@@ -16,12 +16,13 @@
 <body>
   <div id="app">
     <h2>To Do List</h2>
-    <input type="text" placeholder="add todo..." v-model="newTodo">
+    <input type="text" placeholder="add todo..." v-model="newTodo" @keyup.enter="addTodo">
     <button @click="addTodo">add</button>
     <ul>
       <li v-for='todo in todos'>
         <input type="checkbox" v-model="todo.done">
         <label :class="{ checked: todo.done }">{{ todo.title }}</label>
+        <button @click="deleteTodo(todo)">delete</button>
       </li>
     </ul>
   </div>
