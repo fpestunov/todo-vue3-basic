@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>To Do List</h2>
+    <input type="text" placeholder="add todo...">
+    <button @click="addTodo">add</button>
+    <ul>
+      <li v-for='todo in todos'>
+        <input type="checkbox">
+        <label :class="{ checked: todo.done }">{{ todo }}</label>
+      </li>
+    </ul>
+  </div>
+  <script src="main.js"></script>
+  
+  <!-- Mount App into DOM -->
+  <script>
+    app.mount('#app')
+  </script>
+</body>
+</html>
