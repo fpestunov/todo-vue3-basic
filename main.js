@@ -1,6 +1,7 @@
 const app = Vue.createApp({
   data() {
     return {
+      newTodo: "",
       todos: [
         'Go to store',
         'Make homework',
@@ -10,7 +11,13 @@ const app = Vue.createApp({
   },
   methods: {
     addTodo () {
-      console.log('add todo...')
+      const value = this.newTodo && this.newTodo.trim();
+      if (!value) {
+        return;
+      }
+      
+      this.todos.push(this.newTodo)
+      this.newTodo = ""
     },
   }
 

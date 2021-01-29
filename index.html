@@ -10,7 +10,7 @@
 <body>
   <div id="app">
     <h2>To Do List</h2>
-    <input type="text" placeholder="add todo...">
+    <input type="text" placeholder="add todo..." v-model="newTodo">
     <button @click="addTodo">add</button>
     <ul>
       <li v-for='todo in todos'>
