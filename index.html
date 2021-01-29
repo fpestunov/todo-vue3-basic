@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .checked {
-      color: #555;
-      text-decoration: line-through;
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
   <title>ToDo List</title>
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@next"></script>
@@ -16,13 +11,15 @@
 <body>
   <div id="app">
     <h2>To Do List</h2>
-    <input type="text" placeholder="add todo..." v-model="newTodo" @keyup.enter="addTodo">
-    <button @click="addTodo">add</button>
+    <div class="add-items">
+      <input type="text" placeholder="add todo..." v-model="newTodo" @keyup.enter="addTodo">
+      <button @click="addTodo">add</button>
+    </div>
     <ul>
       <li v-for='todo in todos'>
         <input type="checkbox" v-model="todo.done">
         <label :class="{ checked: todo.done }">{{ todo.title }}</label>
-        <button @click="deleteTodo(todo)">delete</button>
+        <button @click="deleteTodo(todo)" class="delete">delete</button>
       </li>
     </ul>
   </div>
