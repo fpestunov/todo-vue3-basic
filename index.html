@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
-  <title>ToDo List</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>ToDo List</title>
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="app">
-    <h2>To Do List</h2>
-    <div class="add-items">
-      <input type="text" placeholder="add todo..." v-model="newTodo" @keyup.enter="addTodo">
-      <button @click="addTodo">add</button>
+  </head>
+  <body>
+    <div id="app">
+      <h2>To Do List</h2>
+      <div class="add-items">
+        <input
+          type="text"
+          placeholder="add todo..."
+          v-model="newTodo"
+          @keyup.enter="addTodo"
+        />
+        <button @click="addTodo">add</button>
+      </div>
+      <i v-if="!todos.length">Nothing to do.</i>
+      <ul>
+        <li v-for="todo in todos">
+          <input type="checkbox" v-model="todo.done" />
+          <label :class="{ checked: todo.done }">{{ todo.title }}</label>
+          <button @click="deleteTodo(todo)" class="delete">delete</button>
+        </li>
+      </ul>
+      <hr />
+      <button @click="saveTodos">save todos</button>
     </div>
-    <ul>
-      <li v-for='todo in todos'>
-        <input type="checkbox" v-model="todo.done">
-        <label :class="{ checked: todo.done }">{{ todo.title }}</label>
-        <button @click="deleteTodo(todo)" class="delete">delete</button>
-      </li>
-    </ul>
-  </div>
-  <script src="main.js"></script>
-  
-  <!-- Mount App into DOM -->
-  <script>
-    app.mount('#app')
-  </script>
-</body>
+    <script src="main.js"></script>
+
+    <!-- Mount App into DOM -->
+    <script>
+      app.mount("#app");
+    </script>
+  </body>
 </html>

@@ -1,16 +1,23 @@
+// store data in localstorage
+const STORAGE_KEY = "my-todo";
+const mytodoStorage = {
+  load() {
+    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return todos;
+  },
+  save(todos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  },
+};
 const app = Vue.createApp({
   data() {
     return {
       newTodo: "",
-      todos: [
-        {title: 'Go to store', done: false },
-        {title: 'Make homework', done: true },
-        {title: 'Call John', done: false },
-      ],
-    }
+      todos: [],
+    };
   },
   methods: {
-    addTodo () {
+    addTodo() {
       const value = this.newTodo && this.newTodo.trim();
       if (!value) {
         return;
@@ -18,12 +25,19 @@ const app = Vue.createApp({
 
       this.todos.push({
         title: this.newTodo,
-        done: false
+        done: false,
       });
       this.newTodo = "";
     },
-    deleteTodo: function(todo) {
+    deleteTodo: function (todo) {
       this.todos.splice(this.todos.indexOf(todo), 1);
     },
-  }
-})
+    saveTodos() {
+      mytodoStorage.save(this.todos);
+    },
+  },
+  mounted() {
+    this.todos = mytodoStorage.load();
+    console.log("app mounted");
+  },
+});
